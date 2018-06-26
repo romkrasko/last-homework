@@ -1,6 +1,5 @@
 package com.gmail.romkrasko.tests;
 
-import com.gmail.romkrasko.core.WaiterClass;
 import com.gmail.romkrasko.pages.MainPage;
 import com.gmail.romkrasko.pages.MarketPage;
 import org.testng.Assert;
@@ -21,16 +20,13 @@ public class AddAndCompare extends BaseTest{
         marketPage = new MarketPage(driver);
     }
 
-
     @Test
     public void addAndCompare(){
         mainPage.clickMarketButton();
         marketPage.sendValueInInput();
         marketPage.pressSearch();
-        marketPage.moveToFirstPhone();
-        marketPage.addToCompareFirstPhone();
-        marketPage.moveToSecondPhone();
-        marketPage.addToCompareSecondPhone();
+        marketPage.addPhoneToCompare(1);
+        marketPage.addPhoneToCompare(2);
         marketPage.clickToCompareButton();
         Assert.assertTrue(marketPage.compareProducts());
 

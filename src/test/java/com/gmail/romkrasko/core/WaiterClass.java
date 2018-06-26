@@ -4,27 +4,23 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class WaiterClass {
 
     public void WaitUntilElementIsEnable(WebElement element) {
         long startTime = System.currentTimeMillis();
+        int toy=1;
         while (true) {
             if (System.currentTimeMillis() - startTime > 10000) {
                 System.out.println("Time out(");
                 break;
             }
             try {
-                //System.out.println(element.isEnabled());
+                element.isEnabled();
                 break;
 
-            }catch (NoSuchElementException e) {}
-            catch (StaleElementReferenceException e){
-            }
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                System.out.println("lol((");
-            }
+            }catch (NoSuchElementException | StaleElementReferenceException e) {toy++;}
         }
     }
 

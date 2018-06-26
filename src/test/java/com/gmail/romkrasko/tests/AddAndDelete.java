@@ -20,21 +20,18 @@ public class AddAndDelete extends BaseTest {
         marketPage = new MarketPage(driver);
     }
 
-
     @Test
     public void addAndDelete() {
         mainPage.clickMarketButton();
         marketPage.sendValueInInput();
         marketPage.pressSearch();
-        marketPage.moveToFirstPhone();
-        marketPage.addToCompareFirstPhone();
-        marketPage.moveToSecondPhone();
-        marketPage.addToCompareSecondPhone();
+        marketPage.addPhoneToCompare(1);
+        marketPage.addPhoneToCompare(2);
         marketPage.clickToCompareButton();
         marketPage.compareProducts();
         Assert.assertTrue(marketPage.compareProducts());
-        marketPage.deleteSecond();
-        marketPage.deleteFirst();
+        marketPage.deleteComparedPhone(2);
+        marketPage.deleteComparedPhone(1);
         String expectedResult = marketPage.getNoProductsText();
         Assert.assertEquals(expectedResult, "Товаров нет");
     }
